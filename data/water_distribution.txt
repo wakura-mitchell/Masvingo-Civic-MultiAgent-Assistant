@@ -1,0 +1,23 @@
+## Water Distribution – Masvingo City Council
+
+Masvingo City supplies treated water daily, sourced from Lake Mutirikwi.
+
+## Supply Overview
+
+- Target: 30 million litres/day
+- Actual: Most residents receive water for ~3 hours/day
+- Interruptions due to power outages and aging infrastructure
+
+## Challenges
+
+- Non-Revenue Water (NRW): ~45% loss monthly
+  - Causes: pipe bursts, leaks, faulty meters
+- Metering Issues
+  - Non-standard meters cause billing errors
+  - Council proposes retaining ownership of meters
+
+## Council Actions
+
+- Monthly pipe repairs and meter replacements
+- Joint committee meetings to address NRW
+- Engagement with ZESA to stabilize power supply

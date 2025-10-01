@@ -1,0 +1,20 @@
+## Online Services – Masvingo City Council
+
+Masvingo City Council offers digital platforms for payments and health services.
+
+## Payment Platforms
+
+- Paynow: Secure gateway for bills and licenses
+- Zikicash: Zimswitch-enabled card payments
+- Promun Portal: Balance checks and payment history
+
+## Health Services
+
+- Impilo EHR: Electronic health record system
+- Secure Health ID: Biometric-linked ID for private care
+- Registration available at clinics and council buildings
+
+## Future Plans
+
+- Mobile app under development
+- Integration of telemedicine and remote consultations

@@ -1,0 +1,16 @@
+## Frequently Asked Questions – Masvingo City Council
+
+### How do I pay my water bill?
+Use Paynow, Zikicash, or Promun Portal. You can also pay at the Civic Centre.
+
+### Where do I apply for a shop license?
+Visit your local clinic and speak to a Health Inspector.
+
+### Who is my ward councillor?
+Refer to the council_contacts.txt file or visit the Civic Centre.
+
+### What are the water supply hours?
+Most residents receive water for ~3 hours/day due to infrastructure challenges.
+
+### Can I pay bills from outside Zimbabwe?
+Yes, using Mastercard or Visa via Paynow.

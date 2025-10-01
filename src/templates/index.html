@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<title>RAG Assistant</title>
+		<style>
+			body {
+				font-family: Arial, sans-serif;
+				margin: 2rem;
+				background-color: #f9f9f9;
+			}
+			h1 {
+				color: #333;
+			}
+			form {
+				margin-bottom: 1rem;
+			}
+			textarea {
+				width: 100%;
+				height: 100px;
+				font-size: 1rem;
+				padding: 0.5rem;
+				margin-bottom: 0.5rem;
+			}
+			button {
+				padding: 0.5rem 1rem;
+				font-size: 1rem;
+			}
+			#answer {
+				white-space: pre-wrap;
+				background-color: #fff;
+				border: 1px solid #ddd;
+				padding: 1rem;
+				min-height: 100px;
+			}
+			#error {
+				color: red;
+				margin-top: 1rem;
+			}
+		</style>
+	</head>
+	<body>
+		<h1>RAG Assistant</h1>
+		<form id="query-form">
+			<textarea
+				id="question"
+				placeholder="Enter your question here..."
+				required
+			></textarea
+			><br />
+			<button type="submit">Ask</button>
+		</form>
+		<div id="answer"></div>
+		<div id="error"></div>
+
+		<script>
+			const form = document.getElementById("query-form");
+			const questionInput = document.getElementById("question");
+			const answerDiv = document.getElementById("answer");
+			const errorDiv = document.getElementById("error");
+
+			form.addEventListener("submit", async (e) => {
+				e.preventDefault();
+				answerDiv.textContent = "";
+				errorDiv.textContent = "";
+				const question = questionInput.value.trim();
+				if (!question) return;
+
+				try {
+					const response = await fetch("/query", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/x-www-form-urlencoded",
+						},
+						body: new URLSearchParams({ question }),
+					});
+					const data = await response.json();
+					if (data.error) {
+						errorDiv.textContent = "Error: " + data.error;
+					} else {
+						answerDiv.textContent = data.answer;
+					}
+				} catch (err) {
+					errorDiv.textContent = "Error: " + err.message;
+				}
+			});
+		</script>
+	</body>
+</html>

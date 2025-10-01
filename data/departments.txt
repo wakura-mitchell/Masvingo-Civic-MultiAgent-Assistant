@@ -1,0 +1,29 @@
+## Masvingo City Council Departments
+
+Masvingo City Council operates through specialized departments.
+
+## Health Department
+
+- Runs council clinics and maternity wards
+- Implements Impilo Electronic Health Record (EHR)
+- Issues secure Health IDs
+
+## Engineering Department
+
+- Manages water, sewerage, roads, and infrastructure
+- Handles inspections for licenses and building approvals
+
+## Finance Department
+
+- Oversees billing, payments, and budgeting
+- Manages revenue collection and financial reporting
+
+## Housing & Environmental Services
+
+- Enforces sanitation and environmental by-laws
+- Coordinates waste management and anti-litter campaigns
+
+## Town Clerk’s Office
+
+- Administrative coordination
+- Handles public notices and legal affairs
