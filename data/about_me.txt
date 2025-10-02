@@ -1,0 +1,13 @@
+My Developer Journey – Mitchell C Wakurawarebgwa
+
+From the dusty routers of Betheltech to the dynamic world of full-stack development, my journey has been one of grit, gratitude, and growth. I began as a Network Engineer, mastering the art of LAN/WAN setups, firewall configurations, and user support across diverse infrastructures. For six years, I built resilient systems and learned the value of reliability and precision.
+
+In 2021, I pivoted toward software development, enrolling in a BSc in Computer Science at Great Zimbabwe University. I majored in AI/ML and Software Engineering, driven by a desire to build scalable, intelligent solutions. My hands-on experience as a freelance developer allowed me to explore the MERN stack, RESTful APIs, and responsive UI design using React, Next.js, and Tailwind CSS. I also ventured into mobile development with Flutter and began learning Laravel to expand my backend versatility.
+
+Every project I touch reflects my commitment to clean code, honest skill representation, and collaborative delivery. I’ve built APIs, dashboards, and admin panels, and I’ve supported my wife’s academic journey with the same passion I bring to debugging a stubborn bug.
+
+My short-term goal is to secure a role as a Software Developer or Network Administrator in a growth-oriented company. Long-term, I aim to master both infrastructure and full-stack domains, contributing to innovative digital ecosystems that empower people.
+
+This journey is more than technical — it’s spiritual, relational, and deeply personal. I code with purpose, learn with humility, and celebrate every milestone with those I love.
+
+– Mitchell

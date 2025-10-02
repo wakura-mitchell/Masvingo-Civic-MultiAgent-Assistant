@@ -4,9 +4,11 @@ from dotenv import load_dotenv
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.output_parsers import StrOutputParser
 from vectordb import VectorDB
+from conversation import format_history
 from langchain_openai import ChatOpenAI
 from langchain_groq import ChatGroq
 from langchain_google_genai import ChatGoogleGenerativeAI
+import yaml
 
 # Load environment variables
 load_dotenv()
@@ -23,6 +25,7 @@ def load_documents() -> List[Dict]:
     data_dir = "data"
     if not os.path.exists(data_dir):
         print(f"Data directory '{data_dir}' does not exist.")
+        import yaml
         return results
 
     for filename in os.listdir(data_dir):
@@ -56,14 +59,21 @@ class RAGAssistant:
         # Initialize vector database
         self.vector_db = VectorDB()
 
-        # Create RAG prompt template
-        prompt_str = (
-            "You are a helpful assistant. Use the following context to answer the question.\n\n"
+        # Load prompt from YAML config
+        prompt_path = os.path.join(os.path.dirname(__file__), '../config/prompt_config.yaml')
+        with open(prompt_path, 'r', encoding='utf-8') as f:
+            config = yaml.safe_load(f)
+        prompt_str = config.get('rag_assistant_prompt', '')
+
+        # Add placeholders for history, context, and question
+        prompt_template_str = (
+            f"{prompt_str}\n\n"
+            "Conversation history:\n{history}\n\n"
             "Context:\n{context}\n\n"
             "Question:\n{question}\n\n"
             "Answer:"
         )
-        self.prompt_template = ChatPromptTemplate.from_template(prompt_str)
+        self.prompt_template = ChatPromptTemplate.from_template(prompt_template_str)
 
         # Create the chain
         self.chain = self.prompt_template | self.llm | StrOutputParser()
@@ -97,13 +107,14 @@ class RAGAssistant:
         """
         self.vector_db.add_documents(documents)
 
-    def invoke(self, input: str, n_results: int = 3) -> str:
+    def invoke(self, input: str, n_results: int = 3, history: List[Dict[str, str]] = None) -> str:
         """
         Query the RAG assistant.
 
         Args:
             input: User's input
             n_results: Number of relevant chunks to retrieve
+            history: List of previous turns (user/assistant)
 
         Returns:
             String answer from the LLM
@@ -115,13 +126,18 @@ class RAGAssistant:
         # Combine retrieved chunks into context string
         context = "\n\n".join(documents)
 
+        # Format conversation history
+        history_str = format_history(history or [])
+
         # Prepare prompt input
         prompt_input = {
             "context": context,
             "question": input,
+            "history": history_str,
         }
 
-        # Generate answer using the chain
+        # Update prompt template to include history if not already
+        # (You may want to update self.prompt_template to use {history} in the template string)
         answer = self.chain.invoke(prompt_input)
 
         return answer
