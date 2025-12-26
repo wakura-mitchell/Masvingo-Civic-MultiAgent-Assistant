@@ -1,0 +1,50 @@
+[
+    {
+        "query": "What are the council bylaws?",
+        "expected_domains": ["by-laws"],
+        "expected_chunks": ["bylaws.txt"],
+        "relevance_threshold": 0.7
+    },
+    {
+        "query": "How do I pay my bills?",
+        "expected_domains": ["billing"],
+        "expected_chunks": ["bill_payments.txt"],
+        "relevance_threshold": 0.7
+    },
+    {
+        "query": "What licenses do I need?",
+        "expected_domains": ["licensing"],
+        "expected_chunks": ["operating_licenses.txt"],
+        "relevance_threshold": 0.7
+    },
+    {
+        "query": "Are there any public notices?",
+        "expected_domains": ["notices"],
+        "expected_chunks": ["public_notices.txt"],
+        "relevance_threshold": 0.7
+    },
+    {
+        "query": "How can I contact the council?",
+        "expected_domains": ["contacts"],
+        "expected_chunks": ["council_contacts.txt"],
+        "relevance_threshold": 0.7
+    },
+    {
+        "query": "What departments are available?",
+        "expected_domains": ["departments"],
+        "expected_chunks": ["departments.txt"],
+        "relevance_threshold": 0.7
+    },
+    {
+        "query": "What online services are offered?",
+        "expected_domains": ["services"],
+        "expected_chunks": ["online_services.txt"],
+        "relevance_threshold": 0.7
+    },
+    {
+        "query": "Tell me about water distribution",
+        "expected_domains": ["utilities"],
+        "expected_chunks": ["water_distribution.txt"],
+        "relevance_threshold": 0.7
+    }
+]

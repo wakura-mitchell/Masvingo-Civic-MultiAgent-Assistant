@@ -17,6 +17,6 @@ class VectorDB:
         """Add documents to the vector database."""
         self.query_engine.add_documents(documents)
 
-    def search(self, query, n_results=5):
+    def search(self, query, n_results=5, domain_filter=None):
         """Search for similar documents in the vector database."""
-        return self.query_engine.search(query, n_results=n_results)
+        return self.query_engine.search(query, n_results=n_results, domain_filter=domain_filter)

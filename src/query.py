@@ -80,21 +80,23 @@ class VectorDBQuery:
             })
         return chunks
 
-    def search(self, query: str, n_results: int = 5) -> Dict[str, Any]:
+    def search(self, query: str, n_results: int = 5, domain_filter: str = None) -> Dict[str, Any]:
         """
         Search for similar documents in the vector database.
         Args:
             query: Search query
             n_results: Number of results to return
+            domain_filter: Optional domain to filter results by
         Returns:
             Dictionary containing search results with keys: 'documents', 'metadatas', 'distances', 'ids'
         """
         query_embedding = self.embedding_model.embed([query])
         results = self.collection.query(
             query_embeddings=query_embedding.tolist() if hasattr(query_embedding, "tolist") else query_embedding,
-            n_results=n_results,
+            n_results=n_results * 2,  # Get more results for filtering
             include=["documents", "metadatas", "distances"],
         )
+
         if not results or not results.get("documents"):
             return {
                 "documents": [],
@@ -102,4 +104,59 @@ class VectorDBQuery:
                 "distances": [],
                 "ids": [],
             }
-        return results
+
+        # Apply domain filtering if specified
+        if domain_filter:
+            filtered_results = self._filter_by_domain(results, domain_filter, n_results)
+            return filtered_results
+
+        # Return top n_results if no filtering
+        return {
+            "documents": [results["documents"][0][:n_results]],
+            "metadatas": [results["metadatas"][0][:n_results]],
+            "distances": [results["distances"][0][:n_results]],
+            "ids": [results["ids"][0][:n_results]] if "ids" in results else [[]],
+        }
+
+    def _filter_by_domain(self, results: Dict[str, Any], domain_filter: str, n_results: int) -> Dict[str, Any]:
+        """
+        Filter search results by domain.
+        """
+        documents = results.get("documents", [[]])[0]
+        metadatas = results.get("metadatas", [[]])[0]
+        distances = results.get("distances", [[]])[0]
+        ids = results.get("ids", [[]])[0] if "ids" in results else []
+
+        # Filter results by domain
+        filtered_docs = []
+        filtered_metadatas = []
+        filtered_distances = []
+        filtered_ids = []
+
+        for doc, meta, dist, chunk_id in zip(documents, metadatas, distances, ids):
+            chunk_domain = meta.get("domain", "unknown")
+            if chunk_domain == domain_filter or domain_filter == "general":
+                filtered_docs.append(doc)
+                filtered_metadatas.append(meta)
+                filtered_distances.append(dist)
+                filtered_ids.append(chunk_id)
+
+                if len(filtered_docs) >= n_results:
+                    break
+
+        # If no domain-specific results, fall back to general results
+        if not filtered_docs:
+            print(f"No results found for domain '{domain_filter}', falling back to general search")
+            return {
+                "documents": [documents[:n_results]],
+                "metadatas": [metadatas[:n_results]],
+                "distances": [distances[:n_results]],
+                "ids": [ids[:n_results]] if ids else [[]],
+            }
+
+        return {
+            "documents": [filtered_docs],
+            "metadatas": [filtered_metadatas],
+            "distances": [filtered_distances],
+            "ids": [filtered_ids],
+        }
