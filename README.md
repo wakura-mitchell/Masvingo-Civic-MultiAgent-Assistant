@@ -36,68 +36,68 @@ Response Generation: Groq API LLM generates grounded, context‑aware answers.
 Fallback Handling: If an agent fails, the system provides web‑enhanced responses as backup.
 
 ## Project Structure
-Code
-Masvingo-Civic-MultiAgent-Assistant/
-├── .env                      # Environment variables configuration
-├── .git/                     # Git repository metadata
-├── .gitignore                # Git ignore rules
-├── LICENSE                   # Project license file
-├── README.md                 # Project documentation
-├── requirements.txt          # Python dependencies
-├── test_queries.json          # Test queries for system validation
 
-├── config/                   # Root configuration directory
-│   └── prompt_config.yaml    # Prompt templates and configurations
+    Masvingo-Civic-MultiAgent-Assistant/
+        ├── .env                      # Environment variables configuration
+        ├── .git/                     # Git repository metadata
+        ├── .gitignore                # Git ignore rules
+        ├── LICENSE                   # Project license file
+        ├── README.md                 # Project documentation
+        ├── requirements.txt          # Python dependencies
+        ├── test_queries.json          # Test queries for system validation
+    
+    ├── config/                   # Root configuration directory
+    │   └── prompt_config.yaml    # Prompt templates and configurations
+    
+    ├── data/                     # Static data files for RAG system
+    │   ├── about_me.txt          # Council information data
+    │   ├── bill_payments.txt     # Billing and payment information
+    │   ├── bylaws.txt            # Council bylaws and regulations
+    │   ├── council_contacts.txt  # Contact information for departments
+    │   ├── departments.txt       # Department listings and descriptions
+    │   ├── faq.txt               # Frequently asked questions
+    │   ├── glossary.txt          # Terminology definitions
+    │   ├── new.js                # JavaScript data file
+    │   ├── online_services.txt   # Online service descriptions
+    │   ├── operating_licenses.txt# License and permit information
+    │   ├── public_notices.txt    # Public announcements and notices
+    │   └── water_distribution.txt# Water service information
+    
+    ├── databases/                # Vector database storage
+    │   └── chroma_db/            # ChromaDB vector database files
+    
+    ├── mcc-rag-venv/             # Python virtual environment
+    │   ├── pyvenv.cfg            # Virtual environment configuration
+    │   ├── Include/              # C headers for compiled extensions
+    │   ├── Lib/                  # Python packages and modules
+    │   │   └── site-packages/    # Installed third-party packages
+    │   └── Scripts/              # Virtual environment scripts
+    
+    ├── src/                      # Legacy source code directory
+    │   ├── app.py                # Legacy RAG assistant implementation
+    │   ├── connection.py         # Database connection utilities
+    │   ├── conversation.py       # Conversation management
+    │   ├── domain_classifier.py  # Query domain classification
+    │   ├── embedding.py          # Text embedding utilities
+    │   ├── evaluation.py         # System evaluation tools
+    │   ├── query.py              # Query processing logic
+    │   ├── structured_data.py    # Structured data handling
+    │   ├── utils.py              # Utility functions
+    │   ├── vectordb.py           # Vector database operations
+    │   ├── webapp.py             # Legacy web application
+    │   ├── pycache/              # Python bytecode cache
+    │   └── templates/            # Legacy HTML templates
+    │       └── index.html        # Legacy web interface
 
-├── data/                     # Static data files for RAG system
-│   ├── about_me.txt          # Council information data
-│   ├── bill_payments.txt     # Billing and payment information
-│   ├── bylaws.txt            # Council bylaws and regulations
-│   ├── council_contacts.txt  # Contact information for departments
-│   ├── departments.txt       # Department listings and descriptions
-│   ├── faq.txt               # Frequently asked questions
-│   ├── glossary.txt          # Terminology definitions
-│   ├── new.js                # JavaScript data file
-│   ├── online_services.txt   # Online service descriptions
-│   ├── operating_licenses.txt# License and permit information
-│   ├── public_notices.txt    # Public announcements and notices
-│   └── water_distribution.txt# Water service information
-
-├── databases/                # Vector database storage
-│   └── chroma_db/            # ChromaDB vector database files
-
-├── mcc-rag-venv/             # Python virtual environment
-│   ├── pyvenv.cfg            # Virtual environment configuration
-│   ├── Include/              # C headers for compiled extensions
-│   ├── Lib/                  # Python packages and modules
-│   │   └── site-packages/    # Installed third-party packages
-│   └── Scripts/              # Virtual environment scripts
-
-├── src/                      # Legacy source code directory
-│   ├── app.py                # Legacy RAG assistant implementation
-│   ├── connection.py         # Database connection utilities
-│   ├── conversation.py       # Conversation management
-│   ├── domain_classifier.py  # Query domain classification
-│   ├── embedding.py          # Text embedding utilities
-│   ├── evaluation.py         # System evaluation tools
-│   ├── query.py              # Query processing logic
-│   ├── structured_data.py    # Structured data handling
-│   ├── utils.py              # Utility functions
-│   ├── vectordb.py           # Vector database operations
-│   ├── webapp.py             # Legacy web application
-│   ├── pycache/              # Python bytecode cache
-│   └── templates/            # Legacy HTML templates
-│       └── index.html        # Legacy web interface
-
-└── masvingo_civic_assistant/ # Main application directory
-    ├── .pytest_cache/        # Pytest cache directory
-    ├── main.py               # Application entry point
-    ├── project structure.md  # Project structure documentation
-    ├── README.md             # Application-specific documentation
-    ├── requirements.txt      # Application dependencies
-    ├── Application-for-issue-of-new-licence_2.pdf # Sample license application
-    ├── licence_form_John Doe.pdf                 # Generated license form sample
-    ├── licence_form_Test User.pdf                # Generated license form sample
+    └── masvingo_civic_assistant/ # Main application directory
+        ├── .pytest_cache/        # Pytest cache directory
+        ├── main.py               # Application entry point
+        ├── project structure.md  # Project structure documentation
+        ├── README.md             # Application-specific documentation
+        ├── requirements.txt      # Application dependencies
+        ├── Application-for-issue-of-new-licence_2.pdf # Sample license application
+        ├── licence_form_John Doe.pdf                 # Generated license form sample
+        ├── licence_form_Test User.pdf                # Generated license form sample
 
     ├── agents/               # Specialized AI agents
     │   ├── __init__.py       # Agents package initialization
@@ -162,6 +162,7 @@ Masvingo-Civic-MultiAgent-Assistant/
         ├── math_tool.py      # Mathematical computation tools
         ├── rag_tool.py       # RAG system integration
         └── web_scraper_tool.py # Web scraping functionality
+
 
 ## Setup Instructions
 ### Prerequisites
