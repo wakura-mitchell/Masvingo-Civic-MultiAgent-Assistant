@@ -5,7 +5,7 @@ Masvingo City Council offers digital platforms for payments and health services.
 ## Payment Platforms
 
 - Paynow: Secure gateway for bills and licenses
-- Zikicash: Zimswitch-enabled card payments
+- Ecocash: Zimswitch-enabled card payments
 - Promun Portal: Balance checks and payment history
 
 ## Health Services

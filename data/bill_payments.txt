@@ -8,12 +8,34 @@ Residents can pay bills for water, rates, and licenses using online platforms or
   - Accepts EcoCash, OneMoney, Telecash, Visa, Mastercard, Zimswitch cards.
   - Used for water bills, rates, and license renewals.
 
-- Zikicash
-  - Search for “City of Masvingo” under billers.
-  - Accepts Zimswitch-enabled bank cards.
+- Ecocash.
+  - Pay your Masvingo City Council Bills through:
+
+  - Ecocash
+    - Biller Code: 87870
+    - Merchant Code: 28408
+
+  - One Wallet Payment
+    - Biller Code: 18041
 
 - Promun Portal
   - Offers balance enquiries, payment history, and SMS/email confirmations.
+
+- WHATSAPP PAYMENT PLATFORM
+  Pay your bill via Whatsapp. 
+
+  Steps to follow when you want to make a payment:
+
+  Save the following Whatsapp number to your contacts: (+263 8644 729 100);
+  Open your Whatsapp and send a “Hie” message to the number;
+
+
+  Follow the steps in the replied message and complete the payment process.
+
+  Help?
+
+  For help you can contact us on (+263 392 262 413/4)
+  enquiries@drg.co.zw
 
 ## In-Person Payments
 
@@ -26,3 +48,56 @@ Residents can pay bills for water, rates, and licenses using online platforms or
 - SMS or email confirmation serves as proof of payment.
 - Foreign residents can pay using Mastercard or Visa.
 - For issues, contact the Revenue Hall or ward office.
+
+## Understand your Municipal bill
+Your High Density Domestic/Residential bill comprises of Service Charges which are:-
+● Minimum Water
+● Refuse Collection
+● Sewerage Services
+● Supplementary Charges
+● Excess water (where water consumption exceeds 5 kilo litres)
+
+For the 2023 financial year, the charges have been pegged as shown below:
+US$:
+Minimum Water: charged for 5KL @ 1.30 per kl = 6.50
+Refuse charge @ 2.06 per collection for 4 times a month incl. VAT = 9.48
+Sewerage charge – a fixed monthly charge Incl. VAT = 5.67
+Supplementary Charges – a fixed monthly charge = 4.00
+Total Service charges (VAT inclusive) = 25.65
+
+Illustration of Bill calculation given a monthly consumption of 20kl:-
+(i) The first 5kl are in minimum water – 5kl = 6.50
+(ii) Excess Water :- 6kl to 18 kl charge-13kl @ 1.30 = 16.90
+(iii) 19 to 20 kl charge-2 kl @ 1.40 = 2.80 19.70
+Total Water Charge 26.20
+(iv) Add :- Refuse removal charge 9.48
+(v) Sewerage charge 5.67
+(vi) Supplementary Charge 4.00
+Total Bill 45.35
+
+The above bill will be given in ZWL$ at the prevailing interbank rate on the date one day
+before billing for example, if billing starts on the 21st then the interbank rate of the 20th is used.
+E.g. The rate on 20 January 2023 was ZWL$738.4225 and the current bill will be;
+US$45.35 x 738.4115 = ZWL$33,486.9
+
+## MASVINGO CITY BILLING CYCLE
+- 1-5 Every Month: Meter Reading 16-23 Every Month:
+- Meter Reading capturing 21-24 Every Month:
+- Billing and Statements printing
+  - 25-7th of the next month: Statements Distribution
+
+## Business Hours
+Our Branch opening times
+
+Civic Centre
+Monday to Friday(8am-4pm)
+Saturday(8am-11:30am)
+
+Mucheke Administration
+Monday to Friday(8am-4pm)
+
+Chesvingo Administration
+Monday to Friday(8am-4pm)
+
+Rujeko Administration
+Monday to Friday(8am-4pm)

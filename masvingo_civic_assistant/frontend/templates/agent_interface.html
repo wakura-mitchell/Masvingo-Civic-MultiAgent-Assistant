@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Masvingo Civic Assistant - Multi-Agent</title>
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+		/>
+	</head>
+	<body>
+		<div class="container mt-5">
+			<h1>Masvingo Civic Assistant - Multi-Agent System</h1>
+			<p>
+				Interact with specialized agents for billing, incidents, and
+				licensing.
+			</p>
+
+			<form id="queryForm">
+				<div class="mb-3">
+					<label for="question" class="form-label"
+						>Ask a question:</label
+					>
+					<input
+						type="text"
+						class="form-control"
+						id="question"
+						name="question"
+						required
+					/>
+				</div>
+				<button type="submit" class="btn btn-primary">Submit</button>
+			</form>
+
+			<div id="response" class="mt-3"></div>
+
+			<div class="mt-5">
+				<h3>Available Agents:</h3>
+				<ul>
+					<li>
+						<strong>Billing Agent:</strong> Check water bills and
+						payments
+					</li>
+					<li><strong>Incident Agent:</strong> Report pipe bursts</li>
+					<li>
+						<strong>Licensing Agent:</strong> Apply for licences
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+		<script>
+			document
+				.getElementById("queryForm")
+				.addEventListener("submit", async function (e) {
+					e.preventDefault();
+					const question = document.getElementById("question").value;
+					const responseDiv = document.getElementById("response");
+
+					responseDiv.innerHTML =
+						'<div class="alert alert-info">Processing...</div>';
+
+					try {
+						const res = await fetch("/agent-query", {
+							method: "POST",
+							headers: {
+								"Content-Type":
+									"application/x-www-form-urlencoded",
+							},
+							body: new URLSearchParams({ question }),
+						});
+						const data = await res.json();
+						if (data.error) {
+							responseDiv.innerHTML = `<div class="alert alert-danger">${data.error}</div>`;
+						} else {
+							responseDiv.innerHTML = `<div class="alert alert-success">${data.answer}</div>`;
+						}
+					} catch (error) {
+						responseDiv.innerHTML = `<div class="alert alert-danger">Error: ${error.message}</div>`;
+					}
+				});
+		</script>
+	</body>
+</html>

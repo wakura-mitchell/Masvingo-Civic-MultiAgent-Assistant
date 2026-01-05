@@ -94,9 +94,16 @@ class RAGAssistant:
 
         # Load prompt from YAML config
         prompt_path = os.path.join(os.path.dirname(__file__), '../config/prompt_config.yaml')
-        with open(prompt_path, 'r', encoding='utf-8') as f:
-            config = yaml.safe_load(f)
-        prompt_str = config.get('rag_assistant_prompt', '')
+        try:
+            with open(prompt_path, 'r', encoding='utf-8') as f:
+                config = yaml.safe_load(f)
+            prompt_str = config.get('general_assistant_prompt', '')
+            if not prompt_str:
+                print(f"Warning: general_assistant_prompt not found in {prompt_path}, using default")
+                prompt_str = "You are a helpful assistant for Masvingo City Council. Answer questions based on the provided context."
+        except Exception as e:
+            print(f"Warning: Failed to load prompt config from {prompt_path}: {e}, using default")
+            prompt_str = "You are a helpful assistant for Masvingo City Council. Answer questions based on the provided context."
 
         # Add placeholders for history, context, and question
         prompt_template_str = (
