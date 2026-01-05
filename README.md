@@ -173,48 +173,48 @@ Fallback Handling: If an agent fails, the system provides web‑enhanced respons
 - Civic documents and/or council web pages for scraping
 
 ## Installation
-bash
-git clone https://github.com/wakura-mitchell/Masvingo-Civic-MultiAgent-Assistant.git
-cd Masvingo-Civic-MultiAgent-Assistant
-pip install -r requirements.txt
-Configure your .env file with API keys and environment settings.
+    bash
+    git clone https://github.com/wakura-mitchell/Masvingo-Civic-MultiAgent-Assistant.git
+    cd Masvingo-Civic-MultiAgent-Assistant
+    pip install -r requirements.txt
+    Configure your .env file with API keys and environment settings.
 
 ## Usage
-Run the Application
-bash
-python app.py
-Access the assistant at http://localhost:5000 and enter queries such as:
+    Run the Application
+        bash
+        python app.py
+        Access the assistant at http://localhost:5000 and enter queries such as:
 
-“How do I apply for a shop licence?”
+- “How do I apply for a shop licence?”
 
-“What are the water billing procedures?”
+- “What are the water billing procedures?”
 
-“Report a pipe burst in Ward 5.”
+- “Report a pipe burst in Ward 5.”
 
 CLI Commands
-ask <question> – Query the assistant
+- ask <question> – Query the assistant
 
-evaluate – Run retrieval evaluation
+- evaluate – Run retrieval evaluation
 
-domains – List available domains
+- domains – List available domains
 
-quit – Exit
+- quit – Exit
 
-Evaluation System
-Run evaluation with test queries:
+## Evaluation System
+    Run evaluation with test queries:
 
-bash
-python evaluation/evaluation.py
-Metrics include precision, recall, F1 score, relevance, and domain classification accuracy.
+    bash
+    python evaluation/evaluation.py
+    Metrics include precision, recall, F1 score, relevance, and domain classification accuracy.
 
 ## Future Enhancements
-Local language NLP support
+- Local language NLP support
 
-Mobile and voice interfaces
+- Mobile and voice interfaces
 
-Analytics dashboard for administrators
+- Analytics dashboard for administrators
 
-Multi‑channel integration (social media, messaging platforms)
+- Multi‑channel integration (social media, messaging platforms)
 
-License
+## License
 This project is licensed under the Attribution‑NonCommercial‑ShareAlike 4.0 International License.
