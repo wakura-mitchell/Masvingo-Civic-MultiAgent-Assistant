@@ -1,221 +1,204 @@
-# Masvingo City Council RAG-Based AI Assistant
+## Masvingo Civic Multi‑Agent Assistant
 
 ## Overview
+The Masvingo Civic Assistant is a multi‑agent Retrieval‑Augmented Generation (RAG) system designed to improve citizen engagement with municipal services in Masvingo, Zimbabwe. It combines semantic search, structured knowledge integration, and live web scraping to deliver accurate, context‑aware responses about council services such as billing, licensing, incident reporting, and general inquiries.
 
-This project is a Retrieval-Augmented Generation (RAG) AI assistant designed for the Masvingo City Council. It allows you to ask questions about council documents and get answers based on the actual content of those documents.
-
-The backend system loads, chunks, embeds, and searches through council documents, then uses a language model to generate answers using the most relevant information found.
+Built as a production‑ready web application, the assistant demonstrates how modern AI can transform public service delivery by providing citizens with 24/7 access to municipal information through an intuitive interface.
 
 ## Features
+Multi‑Agent Architecture: Specialized agents for billing, licensing, incident reporting, and general queries.
 
--   **Document Loading & Domain Classification:** Automatically assigns domain labels (by-laws, licensing, billing, notices, etc.) to documents during ingestion
--   **Structured Data Integration:** Supports loading JSON and SQL data alongside text documents
--   **Query Processing:** Classifies user queries into domains using keyword matching for targeted retrieval
--   **Domain-Based Retrieval:** Filters search results by domain for more accurate responses
--   **Retrieval Evaluation:** Built-in evaluation system with test queries, precision/recall metrics, and relevance scoring
--   **Modular Architecture:** Separate modules for ingestion, classification, retrieval, and evaluation
+Intelligent Query Routing: LangGraph orchestration routes queries to the most appropriate agent.
+
+Web‑Enhanced Knowledge Base: Live scraping of official council web pages ensures up‑to‑date information.
+
+Hybrid Retrieval: Combines vector search (ChromaDB) with structured data (JSON/SQL).
+
+Evaluation Framework: Built‑in metrics for precision, recall, F1 score, relevance, and domain classification accuracy.
+
+Safety Measures: Domain filtering, input validation, error handling, and fallback mechanisms to prevent harmful outputs.
+
+Production‑Ready Design: Modular architecture, error logging, environment‑specific configuration, and extensibility.
 
 ## How It Works
+Web Scraping & Document Ingestion: Extracts content from official council web pages and local civic documents.
 
-1. **Document Ingestion:** Reads text files from the `data/` directory and assigns domain labels. Also loads structured data from JSON/SQL files.
-2. **Domain Classification:** Documents are categorized into domains like "by-laws", "licensing", "billing", etc.
-3. **Text Chunking:** Splits each document into smaller chunks for better search and retrieval.
-4. **Embedding & Storage:** Chunks are embedded and stored in a vector database (ChromaDB) with domain metadata.
-5. **Query Processing:** User queries are classified into domains before retrieval.
-6. **Similarity Search:** Finds the most relevant chunks using vector similarity, filtered by domain.
-7. **Answer Generation:** The language model uses the retrieved context to generate a response.
+Domain Classification: Queries and documents are categorized into domains (billing, licensing, incidents, general, etc.).
+
+Vectorization & Storage: Text is embedded using sentence transformers and stored in ChromaDB with metadata.
+
+Query Routing: LangGraph orchestrates query flow, directing it to the correct agent.
+
+Hybrid Retrieval: Agents pull from both vector database and structured civic records.
+
+Response Generation: Groq API LLM generates grounded, context‑aware answers.
+
+Fallback Handling: If an agent fails, the system provides web‑enhanced responses as backup.
 
 ## Project Structure
-
-```
-Council Query Assistant/
-├── src/
-│   ├── app.py                 # Main RAG application with domain classification
-│   ├── vectordb.py           # Vector database wrapper
-│   ├── connection.py         # Connection and setup for vector database
-│   ├── embedding.py          # Embedding model loading and vectorization
-│   ├── query.py              # Query logic and retrieval with domain filtering
-│   ├── domain_classifier.py  # Domain classification for documents and queries
-│   ├── structured_data.py    # Structured data (JSON/SQL) integration
-│   ├── evaluation.py         # Retrieval evaluation system
-│   ├── conversation.py       # Conversation history formatting
-│   ├── utils.py              # Utility functions
-│   ├── webapp.py             # Web interface
-│   └── templates/
-│       └── index.html        # Web UI template
-├── data/                     # Council documents (.txt, .json, .db files)
-├── config/
-│   └── prompt_config.yaml    # Prompt configuration
-├── requirements.txt          # Dependencies
-├── .env.example              # Environment template
-└── README.md                 # Project guide
-```
+Code
+Masvingo-Civic-MultiAgent-Assistant/
+├── .env                                    # Environment variables configuration
+├── .git/                                   # Git repository metadata
+├── .gitignore                              # Git ignore rules
+├── LICENSE                                 # Project license file
+├── README.md                               # Project documentation
+├── requirements.txt                        # Python dependencies
+├── test_queries.json                       # Test queries for system validation
+├── config/                                 # Root configuration directory
+│   └── prompt_config.yaml                  # Prompt templates and configurations
+├── data/                                   # Static data files for RAG system
+│   ├── about_me.txt                        # Council information data
+│   ├── bill_payments.txt                   # Billing and payment information
+│   ├── bylaws.txt                          # Council bylaws and regulations
+│   ├── council_contacts.txt                # Contact information for departments
+│   ├── departments.txt                     # Department listings and descriptions
+│   ├── faq.txt                             # Frequently asked questions
+│   ├── glossary.txt                        # Terminology definitions
+│   ├── new.js                              # JavaScript data file
+│   ├── online_services.txt                 # Online service descriptions
+│   ├── operating_licenses.txt              # License and permit information
+│   ├── public_notices.txt                  # Public announcements and notices
+│   └── water_distribution.txt              # Water service information
+├── databases/                              # Vector database storage
+│   └── chroma_db/                          # ChromaDB vector database files
+├── mcc-rag-venv/                           # Python virtual environment
+│   ├── pyvenv.cfg                          # Virtual environment configuration
+│   ├── Include/                            # C headers for compiled extensions
+│   ├── Lib/                                # Python packages and modules
+│   │   └── site-packages/                  # Installed third-party packages
+│   └── Scripts/                            # Virtual environment scripts
+├── src/                                    # Legacy source code directory
+│   ├── app.py                              # Legacy RAG assistant implementation
+│   ├── connection.py                       # Database connection utilities
+│   ├── conversation.py                     # Conversation management
+│   ├── domain_classifier.py                # Query domain classification
+│   ├── embedding.py                        # Text embedding utilities
+│   ├── evaluation.py                       # System evaluation tools
+│   ├── query.py                            # Query processing logic
+│   ├── structured_data.py                  # Structured data handling
+│   ├── utils.py                            # Utility functions
+│   ├── vectordb.py                         # Vector database operations
+│   ├── webapp.py                           # Legacy web application
+│   ├── __pycache__/                        # Python bytecode cache
+│   └── templates/                          # Legacy HTML templates
+│       └── index.html                      # Legacy web interface
+└── masvingo_civic_assistant/               # Main application directory
+    ├── .pytest_cache/                      # Pytest cache directory
+    ├── main.py                             # Application entry point
+    ├── project structure.md                # Project structure documentation
+    ├── README.md                           # Application-specific documentation
+    ├── requirements.txt                    # Application dependencies
+    ├── Application-for-issue-of-new-licence_2.pdf  # Sample license application
+    ├── licence_form_John Doe.pdf           # Generated license form sample
+    ├── licence_form_Test User.pdf          # Generated license form sample
+    ├── agents/                             # Specialized AI agents
+    │   ├── __init__.py                     # Agents package initialization
+    │   ├── __pycache__/                    # Python bytecode cache
+    │   ├── billing_agent.py                # Handles billing and payment queries
+    │   ├── coordinator_agent.py            # Coordinates multi-agent interactions
+    │   ├── email_agent.py                  # Manages email communications
+    │   ├── incident_agent.py               # Processes incident reports
+    │   └── licensing_agent.py              # Handles license and permit applications
+    ├── config/                             # Application configuration
+    │   ├── __pycache__/                    # Python bytecode cache
+    │   ├── logging_config.py               # Logging configuration
+    │   ├── prompt_config.yaml              # Agent prompt configurations
+    │   └── settings.py                     # Application settings
+    ├── data/                               # Application data storage
+    │   └── incidents.json                  # Incident tracking data
+    ├── databases/                          # Application database storage
+    │   └── chroma_db/                      # ChromaDB vector database
+    ├── frontend/                           # Web frontend application
+    │   ├── __init__.py                     # Frontend package initialization
+    │   ├── __pycache__/                    # Python bytecode cache
+    │   ├── app.py                          # Main Flask application
+    │   ├── webapp.py                       # Alternative web application
+    │   ├── test_frontend.py                # Frontend unit tests
+    │   ├── databases/                      # Frontend database storage
+    │   ├── static/                         # Static web assets
+    │   │   ├── css/                        # Stylesheets
+    │   │   │   └── main.css                # Main application styles
+    │   │   ├── icons/                      # Application icons
+    │   │   ├── js/                         # JavaScript files
+    │   │   ├── manifest.json               # Web app manifest
+    │   │   └── sw.js                       # Service worker
+    │   └── templates/                      # HTML templates
+    │       ├── index.html                  # Main web interface
+    │       └── agent_interface.html        # Agent interaction interface
+    ├── logs/                               # Application logs
+    │   └── civic_assistant.log             # Main application log file
+    ├── orchestration/                      # Multi-agent orchestration
+    │   ├── __init__.py                     # Orchestration package initialization
+    │   ├── __pycache__/                    # Python bytecode cache
+    │   └── graph_builder.py                # LangGraph orchestration logic
+    ├── tests/                              # Test suite
+    │   ├── __pycache__/                    # Python bytecode cache
+    │   ├── test_agents.py                  # Agent unit tests
+    │   ├── test_frontend.py                # Frontend unit tests
+    │   ├── test_orchestration.py           # Orchestration unit tests
+    │   └── test_tools.py                   # Tool unit tests
+    └── tools/                              # Utility tools and integrations
+        ├── __init__.py                     # Tools package initialization
+        ├── __pycache__/                    # Python bytecode cache
+        ├── api_tool.py                     # API interaction utilities
+        ├── email_tool.py                   # Email sending functionality
+        ├── form_tool.py                    # Form processing tools
+        ├── math_tool.py                    # Mathematical computation tools
+        ├── rag_tool.py                     # RAG system integration
+        └── web_scraper_tool.py             # Web scraping functionality
 
 ## Setup Instructions
-
 ### Prerequisites
+- Python 3.8+
 
--   Python 3.8 or higher
--   API key for your chosen LLM provider (OpenAI, Groq, Google AI, etc.)
--   This project uses Groq by default
+- API key for Groq (default) or other LLM provider
 
-### Installation
+- Civic documents and/or council web pages for scraping
 
-1. **Clone and install dependencies:**
-
-    ```bash
-    git clone [https://github.com/wakura-mitchell/Council-Query-Assistant.git]
-    cd Council-Query-Assistant
-    pip install -r requirements.txt
-    ```
-
-2. **Configure your API key:**
-
-    Create a `.env` file and add your API key:
-
-    ```
-    GROQ_API_KEY=your_groq_key_here
-    ```
+## Installation
+bash
+git clone https://github.com/wakura-mitchell/Masvingo-Civic-MultiAgent-Assistant.git
+cd Masvingo-Civic-MultiAgent-Assistant
+pip install -r requirements.txt
+Configure your .env file with API keys and environment settings.
 
 ## Usage
+Run the Application
+bash
+python app.py
+Access the assistant at http://localhost:5000 and enter queries such as:
 
-### Command Line Interface
+“How do I apply for a shop licence?”
 
-1. **Run the application:**
+“What are the water billing procedures?”
 
-    ```bash
-    python src/app.py
-    ```
+“Report a pipe burst in Ward 5.”
 
-2. **Available commands:**
-    - `ask <question>` - Query the assistant (e.g., `ask What are the council bylaws?`)
-    - `evaluate` - Run retrieval evaluation with test queries
-    - `domains` - List available domains
-    - `quit` - Exit the application
+CLI Commands
+ask <question> – Query the assistant
 
-### Adding Data
+evaluate – Run retrieval evaluation
 
--   **Text Documents:** Place `.txt` files in the `data/` directory. They will be automatically classified into domains based on filenames.
--   **Structured Data:** Add `.json` files or SQLite databases (`.db`, `.sqlite`) to the `data/` directory for structured data integration.
+domains – List available domains
 
-### Domain Classification
+quit – Exit
 
-Documents are automatically classified into these domains:
+Evaluation System
+Run evaluation with test queries:
 
--   **by-laws:** Legal documents and regulations
--   **licensing:** Permits, certifications, approvals
--   **billing:** Payment, fees, invoices
--   **notices:** Public announcements and advisories
--   **contacts:** Department contacts and office information
--   **departments:** Council department information
--   **faq:** Frequently asked questions
--   **glossary:** Terms and definitions
--   **services:** Online services and applications
--   **utilities:** Water, infrastructure services
--   **general:** General information
+bash
+python evaluation/evaluation.py
+Metrics include precision, recall, F1 score, relevance, and domain classification accuracy.
 
-## Evaluation System
+## Future Enhancements
+Local language NLP support
 
-The system includes a comprehensive evaluation framework:
+Mobile and voice interfaces
 
-### Running Evaluation
+Analytics dashboard for administrators
 
-```bash
-python src/app.py
-# Then type: evaluate
-```
+Multi‑channel integration (social media, messaging platforms)
 
-### Evaluation Metrics
-
--   **Precision:** Fraction of retrieved documents that are relevant
--   **Recall:** Fraction of relevant documents that are retrieved
--   **F1 Score:** Harmonic mean of precision and recall
--   **Relevance Score:** Average relevance of retrieved chunks
--   **Domain Classification Accuracy:** Accuracy of query-to-domain classification
-
-### Test Queries
-
-Create a `test_queries.json` file in the project root:
-
-```json
-[
-	{
-		"query": "What are the council bylaws?",
-		"expected_domains": ["by-laws"],
-		"expected_chunks": ["bylaws.txt"],
-		"relevance_threshold": 0.7
-	}
-]
-```
-
-## API Reference
-
-### RAGAssistant Class
-
-```python
-assistant = RAGAssistant()
-
-# Add documents
-assistant.add_documents(documents)
-
-# Query with domain classification
-answer = assistant.invoke("What are the council bylaws?", n_results=3)
-
-# Run evaluation
-results = assistant.run_evaluation(n_results=5)
-```
-
-### DomainClassifier Class
-
-```python
-classifier = DomainClassifier(use_embeddings=False)
-
-# Classify document
-domain = classifier.classify_document("bylaws.txt")
-
-# Classify query
-domain = classifier.classify_query("What are the rules?")
-```
-
-### StructuredDataHandler Class
-
-```python
-handler = StructuredDataHandler("data/")
-
-# Load structured data
-handler.load_json_files()
-handler.load_sql_tables()
-
-# Search structured data
-results = handler.search_structured_data("query", domain="billing")
-```
-
-## Customization
-
--   **LLM Provider:** Modify `_initialize_llm()` in `app.py` to use different providers
--   **Embedding Model:** Change the model in `EmbeddingModel` class
--   **Domain Keywords:** Update `DOMAIN_KEYWORDS` in `domain_classifier.py`
--   **Chunk Size:** Adjust chunking parameters in `query.py`
--   **Evaluation Metrics:** Extend evaluation logic in `evaluation.py`
-
-## Troubleshooting
-
-### Common Issues
-
-1. **No API Key Error:** Ensure your `.env` file contains a valid API key
-2. **Empty Results:** Check that documents are properly loaded and chunked
-3. **Low Evaluation Scores:** Review domain classification and test queries
-4. **Memory Issues:** Reduce `n_results` or chunk size for large datasets
-
-### Debug Mode
-
-Set verbose logging in your environment:
-
-```bash
-export PYTHONPATH=src
-python -c "import logging; logging.basicConfig(level=logging.DEBUG)"
-```
-
-## License
-
-This project is licensed under the Attribution-NonCommercial-ShareAlike 4.0 International License.
+License
+This project is licensed under the Attribution‑NonCommercial‑ShareAlike 4.0 International License.
